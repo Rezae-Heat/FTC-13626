@@ -1,6 +1,6 @@
-# Road Runner Quickstart
+# FTC - 13626 PowerPlay
 
-An example FTC project using [Road Runner](https://github.com/acmerobotics/road-runner). **Note:** Road Runner is in alpha and many of its APIs are incubating.
+Code for the 2022 - 2023 season and will include everything from auto and tele-ops we are developing with new team members.
 
 ## Installation
 
