@@ -1,7 +1,8 @@
-# FTC - 13626 PowerPlay
+## Hephaestus - 13626 PowerPlay
 
 Code for the 2022 - 2023 season and will include everything from auto and tele-ops we are developing with new team members.
 
+## 
 ## Installation
 
 For more detailed instructions on getting Road Runner setup in your own project, see the [Road Runner README](https://github.com/acmerobotics/road-runner#core).

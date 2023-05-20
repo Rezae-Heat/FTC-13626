@@ -5,6 +5,7 @@ import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.DcMotorEx;
 import com.qualcomm.robotcore.hardware.DcMotorEx.*;
+import com.qualcomm.robotcore.hardware.DcMotorSimple;
 import com.qualcomm.robotcore.hardware.HardwareDevice;
 import com.qualcomm.robotcore.hardware.VoltageSensor;
 import com.qualcomm.hardware.rev.RevBlinkinLedDriver;
@@ -23,45 +24,46 @@ public class mecanumDrive extends OpMode {
     DcMotorEx backR = null;
     DcMotorEx frontL = null;
     DcMotorEx frontR = null;
-    RevBlinkinLedDriver newLighting = null;
+   // RevBlinkinLedDriver newLighting = null;
     private ElapsedTime runtime = new ElapsedTime();
 
     public void init() {
         // passing hardware setups to the motors
-        backL = hardwareMap.get(DcMotorEx.class, "backL");
-        backR = hardwareMap.get(DcMotorEx.class, "backR");
-        frontL = hardwareMap.get(DcMotorEx.class, "frontL");
-        frontR = hardwareMap.get(DcMotorEx.class, "frontR");
+        backL = hardwareMap.get(DcMotorEx.class, "leftRear");
+        backR = hardwareMap.get(DcMotorEx.class, "rightRear");
+        backR.setDirection(DcMotorSimple.Direction.REVERSE);
+        frontL = hardwareMap.get(DcMotorEx.class, "leftFront");
+        frontR = hardwareMap.get(DcMotorEx.class, "rightFront");
         telemetry.addData("Status","Initialised");
         telemetry.update();
-        newLighting = hardwareMap.get(RevBlinkinLedDriver.class,"lighting");
-        newLighting.setPattern(RevBlinkinLedDriver.BlinkinPattern.SHOT_WHITE);
+     //   newLighting = hardwareMap.get(RevBlinkinLedDriver.class,"lighting");
+      //  newLighting.setPattern(RevBlinkinLedDriver.BlinkinPattern.SHOT_WHITE);
     }
 
     public void loop(){
 
 
-        backL.setZeroPowerBehavior(DcMotorEx.ZeroPowerBehavior.BRAKE);
-        backR.setZeroPowerBehavior(DcMotorEx.ZeroPowerBehavior.BRAKE);
-        frontL.setZeroPowerBehavior(DcMotorEx.ZeroPowerBehavior.BRAKE);
-        frontR.setZeroPowerBehavior(DcMotorEx.ZeroPowerBehavior.BRAKE);
+        backL.setZeroPowerBehavior(DcMotorEx.ZeroPowerBehavior.FLOAT);
+        backR.setZeroPowerBehavior(DcMotorEx.ZeroPowerBehavior.FLOAT);
+        frontL.setZeroPowerBehavior(DcMotorEx.ZeroPowerBehavior.FLOAT);
+        frontR.setZeroPowerBehavior(DcMotorEx.ZeroPowerBehavior.FLOAT);
         // the above 4 lines, set the motor to brake while no power by the controller
         // assign speed modifier
-        double speedMod = 2.5;
+        double speedMod = 2;
         // half the full throttle, can be adjusted as necessary
 
         if (gamepad1.right_bumper) {
             // should speed it up
             speedMod = 1;
-            newLighting.setPattern(RevBlinkinLedDriver.BlinkinPattern.LIGHT_CHASE_RED);
+           // newLighting.setPattern(RevBlinkinLedDriver.BlinkinPattern.LIGHT_CHASE_RED);
         }
         else if (gamepad1.left_bumper) {
             // should slow it down
             speedMod = 3.5;
-            newLighting.setPattern(RevBlinkinLedDriver.BlinkinPattern.TWINKLES_FOREST_PALETTE);
+           // newLighting.setPattern(RevBlinkinLedDriver.BlinkinPattern.TWINKLES_FOREST_PALETTE);
         }
         else {
-            newLighting.setPattern(RevBlinkinLedDriver.BlinkinPattern.SHOT_WHITE);
+           // newLighting.setPattern(RevBlinkinLedDriver.BlinkinPattern.SHOT_WHITE);
         }
 
 // we need documentation so people trying to learn, can understand what is happening
