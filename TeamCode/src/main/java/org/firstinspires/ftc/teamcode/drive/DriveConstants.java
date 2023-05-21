@@ -73,8 +73,8 @@ public class DriveConstants {
 
     public static double MAX_VEL = 80.7412434095;  // in the unit of inch per second & 80% of the theoretical value
     public static double MAX_ACCEL = 30.0;  // TO BE DETERMINED THROUGH EXPERIMENTATION
-    public static double MAX_ANG_VEL = Math.toRadians(180.0);  // TO BE DETERMINED THROUGH EXPERIMENTATION
-    public static double MAX_ANG_ACCEL = Math.toRadians(180.0);  // TO BE DETERMINED THROUGH EXPERIMENTATION
+    public static double MAX_ANG_VEL = Math.toRadians(60.0);  // TO BE DETERMINED THROUGH EXPERIMENTATION
+    public static double MAX_ANG_ACCEL = Math.toRadians(60.0);  // TO BE DETERMINED THROUGH EXPERIMENTATION
 
     /*
      * Adjust the orientations here to match your robot. See the FTC SDK documentation for details.
