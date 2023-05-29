@@ -24,6 +24,7 @@ public class mecanumDrive extends OpMode {
     DcMotorEx backR = null;
     DcMotorEx frontL = null;
     DcMotorEx frontR = null;
+
    // RevBlinkinLedDriver newLighting = null;
     private ElapsedTime runtime = new ElapsedTime();
 
@@ -34,6 +35,7 @@ public class mecanumDrive extends OpMode {
         backR.setDirection(DcMotorSimple.Direction.REVERSE);
         frontL = hardwareMap.get(DcMotorEx.class, "leftFront");
         frontR = hardwareMap.get(DcMotorEx.class, "rightFront");
+
         telemetry.addData("Status","Initialised");
         telemetry.update();
      //   newLighting = hardwareMap.get(RevBlinkinLedDriver.class,"lighting");
@@ -43,18 +45,19 @@ public class mecanumDrive extends OpMode {
     public void loop(){
 
 
-        backL.setZeroPowerBehavior(DcMotorEx.ZeroPowerBehavior.FLOAT);
-        backR.setZeroPowerBehavior(DcMotorEx.ZeroPowerBehavior.FLOAT);
-        frontL.setZeroPowerBehavior(DcMotorEx.ZeroPowerBehavior.FLOAT);
-        frontR.setZeroPowerBehavior(DcMotorEx.ZeroPowerBehavior.FLOAT);
+        backL.setZeroPowerBehavior(DcMotorEx.ZeroPowerBehavior.BRAKE);
+        backR.setZeroPowerBehavior(DcMotorEx.ZeroPowerBehavior.BRAKE);
+        frontL.setZeroPowerBehavior(DcMotorEx.ZeroPowerBehavior.BRAKE);
+        frontR.setZeroPowerBehavior(DcMotorEx.ZeroPowerBehavior.BRAKE);
         // the above 4 lines, set the motor to brake while no power by the controller
         // assign speed modifier
+
         double speedMod = 2;
         // half the full throttle, can be adjusted as necessary
 
         if (gamepad1.right_bumper) {
             // should speed it up
-            speedMod = 1;
+            speedMod = 1.2;
            // newLighting.setPattern(RevBlinkinLedDriver.BlinkinPattern.LIGHT_CHASE_RED);
         }
         else if (gamepad1.left_bumper) {

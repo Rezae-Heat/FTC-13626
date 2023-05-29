@@ -99,9 +99,11 @@ public class SampleMecanumDrive extends MecanumDrive {
         IMU.Parameters parameters = new IMU.Parameters(new RevHubOrientationOnRobot(
                 DriveConstants.LOGO_FACING_DIR, DriveConstants.USB_FACING_DIR));
         imu.initialize(parameters);
-
+// tighten motor mounts before driving and tuning - motor mount coming loose has become a real issue
         leftFront = hardwareMap.get(DcMotorEx.class, "leftFront");
+        leftFront.setDirection(DcMotorSimple.Direction.REVERSE);
         leftRear = hardwareMap.get(DcMotorEx.class, "leftRear");
+        leftRear.setDirection(DcMotorSimple.Direction.REVERSE);
         rightRear = hardwareMap.get(DcMotorEx.class, "rightRear");
         rightRear.setDirection(DcMotorSimple.Direction.REVERSE);  // +
         rightFront = hardwareMap.get(DcMotorEx.class, "rightFront");
