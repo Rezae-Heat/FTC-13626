@@ -15,15 +15,20 @@ import com.qualcomm.robotcore.util.ElapsedTime;
 
 import org.firstinspires.ftc.robotcore.external.navigation.CurrentUnit;
 
-// Author : Aadi and Kenul from Team 13626
+// Author : Aadi from Team 13626
 // Password to the control hub is in the pre-showcase update section of the onenote
 /* This software should be implemented on the 3/05/2023 and we should be able to figure out wht we need to adjust*/
+// The viper slide code is rudimentary and will need to updated. Just letting you know Kenul and
 @TeleOp()
 public class mecanumDrive extends OpMode {
     DcMotorEx backL = null;
     DcMotorEx backR = null;
     DcMotorEx frontL = null;
     DcMotorEx frontR = null;
+
+
+
+
 
    // RevBlinkinLedDriver newLighting = null;
     private ElapsedTime runtime = new ElapsedTime();
@@ -32,23 +37,28 @@ public class mecanumDrive extends OpMode {
         // passing hardware setups to the motors
         backL = hardwareMap.get(DcMotorEx.class, "leftRear");
         backR = hardwareMap.get(DcMotorEx.class, "rightRear");
-        backR.setDirection(DcMotorSimple.Direction.REVERSE);
+        backR.setDirection(DcMotorSimple.Direction.REVERSE); // this needs to be changed for that motor to work
         frontL = hardwareMap.get(DcMotorEx.class, "leftFront");
         frontR = hardwareMap.get(DcMotorEx.class, "rightFront");
+
+        //slide1 = hardwareMap.get(DcMotorEx.class,"slide1");
+
+
 
         telemetry.addData("Status","Initialised");
         telemetry.update();
      //   newLighting = hardwareMap.get(RevBlinkinLedDriver.class,"lighting");
       //  newLighting.setPattern(RevBlinkinLedDriver.BlinkinPattern.SHOT_WHITE);
+
     }
 
+
     public void loop(){
-
-
         backL.setZeroPowerBehavior(DcMotorEx.ZeroPowerBehavior.BRAKE);
         backR.setZeroPowerBehavior(DcMotorEx.ZeroPowerBehavior.BRAKE);
         frontL.setZeroPowerBehavior(DcMotorEx.ZeroPowerBehavior.BRAKE);
         frontR.setZeroPowerBehavior(DcMotorEx.ZeroPowerBehavior.BRAKE);
+
         // the above 4 lines, set the motor to brake while no power by the controller
         // assign speed modifier
 
@@ -57,7 +67,7 @@ public class mecanumDrive extends OpMode {
 
         if (gamepad1.right_bumper) {
             // should speed it up
-            speedMod = 1.2;
+            speedMod = 1;
            // newLighting.setPattern(RevBlinkinLedDriver.BlinkinPattern.LIGHT_CHASE_RED);
         }
         else if (gamepad1.left_bumper) {
@@ -74,10 +84,10 @@ public class mecanumDrive extends OpMode {
         double r = Math.hypot(gamepad1.left_stick_x, gamepad1.right_stick_x);
         double robotAngle = Math.atan2(-1*gamepad1.right_stick_x, gamepad1.left_stick_x) - Math.PI / 4; // idk why the -1 yet
         double rightX = gamepad1.left_stick_y;
-        final double v1 = r * Math.cos(-robotAngle) + rightX;
+        final double v1 = r * Math.cos(robotAngle) + rightX;
         final double v2 = r * Math.sin(robotAngle) - rightX;
-        final double v3 = r * Math.sin(robotAngle) + rightX;
-        final double v4 = r * Math.cos(-robotAngle) - rightX;
+        final double v3 = r * Math.sin(robotAngle) + rightX; // which motor doesn't work right now
+        final double v4 = r * Math.cos(robotAngle) - rightX;
 
         frontL.setPower(v3/speedMod);
         frontR.setPower(v2/speedMod);
@@ -98,10 +108,10 @@ public class mecanumDrive extends OpMode {
 
 
 
-        double backLcurrent = backL.getCurrent(CurrentUnit.MILLIAMPS);
-        double backRcurrent = backR.getCurrent(CurrentUnit.MILLIAMPS);
-        double frontLcurrent = frontL.getCurrent(CurrentUnit.MILLIAMPS);
-        double frontRcurrent = frontR.getCurrent(CurrentUnit.MILLIAMPS);
+        double backLcurrent = backL.getCurrent(CurrentUnit.AMPS);
+        double backRcurrent = backR.getCurrent(CurrentUnit.AMPS);
+        double frontLcurrent = frontL.getCurrent(CurrentUnit.AMPS);
+        double frontRcurrent = frontR.getCurrent(CurrentUnit.AMPS);
         telemetry.addData("backLeft current draw:",backLcurrent);
         telemetry.addData("backRight current draw:",backRcurrent);
         telemetry.addData("frontLeft current draw:",frontLcurrent);
