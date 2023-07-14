@@ -37,9 +37,12 @@ public class mecanumDrive extends OpMode {
         // passing hardware setups to the motors
         backL = hardwareMap.get(DcMotorEx.class, "leftRear");
         backR = hardwareMap.get(DcMotorEx.class, "rightRear");
+        backL.setDirection(DcMotorSimple.Direction.REVERSE);
         backR.setDirection(DcMotorSimple.Direction.REVERSE); // this needs to be changed for that motor to work
         frontL = hardwareMap.get(DcMotorEx.class, "leftFront");
         frontR = hardwareMap.get(DcMotorEx.class, "rightFront");
+        frontL.setDirection(DcMotorSimple.Direction.REVERSE);
+        frontR.setDirection(DcMotorSimple.Direction.REVERSE);
 
         //slide1 = hardwareMap.get(DcMotorEx.class,"slide1");
 
