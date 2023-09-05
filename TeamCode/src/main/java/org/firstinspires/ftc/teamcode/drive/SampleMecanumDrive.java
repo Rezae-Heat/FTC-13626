@@ -101,11 +101,10 @@ public class SampleMecanumDrive extends MecanumDrive {
         imu.initialize(parameters);
 // tighten motor mounts before driving and tuning - motor mount coming loose has become a real issue
         leftFront = hardwareMap.get(DcMotorEx.class, "leftFront");
-        leftRear.setDirection(DcMotorSimple.Direction.REVERSE);
+        leftFront.setDirection(DcMotorSimple.Direction.REVERSE); //+
         rightRear = hardwareMap.get(DcMotorEx.class, "rightRear");
         rightRear.setDirection(DcMotorSimple.Direction.REVERSE);  // +
         rightFront = hardwareMap.get(DcMotorEx.class, "rightFront");
-        rightFront.setDirection(DcMotorSimple.Direction.REVERSE);
 
         leftRear.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.FLOAT);  //+
         rightRear.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.FLOAT);  //+
