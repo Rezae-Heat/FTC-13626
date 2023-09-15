@@ -7,8 +7,8 @@
     import com.qualcomm.robotcore.hardware.DcMotorSimple;
     import com.qualcomm.robotcore.hardware.Servo;
     import com.qualcomm.robotcore.util.ElapsedTime;
-    import com.qualcomm.robotcore.hardware.ServoImplEx;
-    import com.qualcomm.robotcore.hardware.IMU;
+    import com.vuforia.CameraDevice;
+    import com.vuforia.CameraDevice.*;
 
 
     import org.firstinspires.ftc.robotcore.external.navigation.CurrentUnit;
@@ -19,7 +19,8 @@
     // The viper slide code is rudimentary and will need to updated.
     @TeleOp()
     public class teleOP1VPR extends OpMode {
-        DcMotorEx backL = null; 
+        DcMotorEx backL = null;
+        CameraDevice cam = null;
         DcMotorEx backR = null;
         DcMotorEx frontL = null;
         DcMotorEx frontR = null;
@@ -40,7 +41,7 @@
                     backR.setDirection(DcMotorSimple.Direction.REVERSE);
                     frontL = hardwareMap.get(DcMotorEx.class, "leftFront");
                     frontR = hardwareMap.get(DcMotorEx.class, "rightFront");
-                    frontR.setCurrentAlert(3.50,CurrentUnit.AMPS);
+                    frontR.setCurrentAlert(3.50, CurrentUnit.AMPS);
             // slide stuff below
             slide1 = hardwareMap.get(DcMotorEx.class,"slide1");
             claw  = hardwareMap.get(Servo.class,"claw");
@@ -79,15 +80,15 @@
             }
             if(gamepad2.dpad_up){
                 slide1.setPower(1);// check slides before you run code
-                slide1.setTargetPosition(-targetPositionmid);
+                slide1.setTargetPosition(targetPositionmid);
             }
             if(gamepad2.dpad_left){
                 slide1.setPower(1);
-                slide1.setTargetPosition(-targetPositionlow);
+                slide1.setTargetPosition(targetPositionlow);
             }
             if(gamepad2.dpad_right){
                 slide1.setPower(1);
-                slide1.setTargetPosition(-targetPositionhigh);
+                slide1.setTargetPosition(targetPositionhigh);
             }
             if(gamepad2.dpad_down){
                 slide1.setPower(0.6);
